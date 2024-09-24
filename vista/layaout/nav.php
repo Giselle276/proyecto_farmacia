@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="../css/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../css/css/adminlte.min.css">
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
