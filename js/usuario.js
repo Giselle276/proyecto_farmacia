@@ -80,5 +80,40 @@ $(document).ready(function()
             $('#form-usuario').trigger('reset');
         }
         e.preventDefault();
+    });
+
+    $('#form-pass').submit(e=>{
+        let oldpass=$('#oldpass').val();
+        let newpass=$('#newpass').val();
+        funcion='cambiar_contra';
+        $.post('../controlador/usuariocontroller.php',{id_usuario,funcion,oldpass,newpass},(response)=>{
+            if(response =='update'){
+                $('#update').hide('slow');
+                $('#update').show(2000);
+                $('#update').hide(2000);
+                $('#form-pass').trigger('reset');
+            }
+            else{
+                $('#noupdate').hide('slow');
+                $('#noupdate').show(2000);
+                $('#noupdate').hide(2000);
+                $('#form-pass').trigger('reset');
+            }
     })
+        e.preventDefault();
 })
+    $('#form-photo').submit(e=>{
+        let formData = new formData($('#form-photo')[0]);
+        $.ajax({
+            url:'../controlador/usuariocontroller.php',
+            type:'POST',
+            data:formData,
+            cache:false,
+            processData:false,
+            contentType:false
+        }).done(function(response){
+            console.log(response);
+        });
+        e.preventDefault();
+    })  
+});
