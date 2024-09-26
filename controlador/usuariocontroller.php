@@ -61,8 +61,20 @@
     }
 
     if($_POST['funcion']=='cambiar_foto'){
-        $nombre=$_FILES['photo']['name'];
-        echo $nombre;
+        if(($_FILES['photo']['type']=='image/jpeg')||($_FILES['photo']['type']=='image/png')||($_FILES['photo']['type']=='image/gif')){
+            $nombre=uniqid().'-'.$_FILES['photo']['name'];
+            $ruta='../imagenes/'.$nombre;
+            move_uploaded_file($_FILES['photo']['tmp_name'],$ruta);
+            $usuario->cambiar_photo($id_usuario,$nombre);
+            foreach ($usuario->objetos as $objeto) {
+                
+                unlink('../imagenes/'.$objeto->avatar);
+            }
+            //$json=array();
+        }
+        else{
+
+        }
     }
 
 ?>
